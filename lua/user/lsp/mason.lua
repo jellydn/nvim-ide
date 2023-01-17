@@ -13,7 +13,7 @@ local servers = {
   -- go
   "gopls",
   -- deno
-  "deno",
+  "denols",
 }
 
 local settings = {
