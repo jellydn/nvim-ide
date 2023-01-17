@@ -41,6 +41,9 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
+-- Copy whole file content to clipboard with C-c
+keymap("n", "<C-c>", ":%y+<CR>", opts)
+
 -- Insert --
 -- Press jj,jk fast to enter
 keymap("i", "jj", "<ESC>", opts)
