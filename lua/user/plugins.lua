@@ -151,6 +151,17 @@ return packer.startup(function(use)
     end,
   }
 
+  -- Go
+  use {
+    "crispgm/nvim-go",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("go").config.update_tool("quicktype", function(tool)
+        tool.pkg_mgr = "yarn"
+      end)
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
