@@ -4,7 +4,5 @@ if not lspconfig_status_ok then
 end
 
 return {
-  settings = {
-    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-  },
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 }

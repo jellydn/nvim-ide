@@ -4,7 +4,5 @@ if not lspconfig_status_ok then
 end
 
 return {
-  settings = {
-    root_dir = lspconfig.util.root_pattern "package.json",
-  },
+  root_dir = lspconfig.util.root_pattern "package.json",
 }

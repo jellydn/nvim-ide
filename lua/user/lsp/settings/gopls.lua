@@ -3,6 +3,4 @@ if not lspconfig_status_ok then
   return
 end
 
-return {
-  settings = {},
-}
+return {}
