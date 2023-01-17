@@ -166,3 +166,7 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Outline
+keymap("n", "<leader>a", "<cmd>AerialToggle!<CR>", opts)
+keymap("n", "<leader>fi", "<cmd>Telescope aerial<CR>", opts)
