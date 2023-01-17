@@ -109,14 +109,6 @@ return packer.startup(function(use)
     end,
   }
 
-  -- better escape
-  use {
-    "nvim-zh/better-escape.vim",
-    config = function()
-      require "user.escape"
-    end,
-  }
-
   -- which key
   use {
     "folke/which-key.nvim",
