@@ -84,6 +84,10 @@ keymap("n", "<leader>fw", function()
     previewer = false,
   })
 end, { desc = "[/] Fuzzily search in current buffer]" })
+keymap("n", "<leader>fi", "<cmd>Telescope aerial<CR>", opts)
+keymap("n", "<leader>tk", "<cmd>Telescope keymaps<CR>", opts)
+keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
+keymap("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", opts)
 
 -- Diagnostic keymaps
 keymap("n", "<leader>q", vim.diagnostic.setloclist)
@@ -169,4 +173,3 @@ keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opt
 
 -- Outline
 keymap("n", "<leader>a", "<cmd>AerialToggle!<CR>", opts)
-keymap("n", "<leader>fi", "<cmd>Telescope aerial<CR>", opts)
