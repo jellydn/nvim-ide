@@ -3,22 +3,116 @@ if not null_ls_status_ok then
   return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
+local b = null_ls.builtins
 
--- https://github.com/prettier-solidity/prettier-plugin-solidity
-null_ls.setup {
-  debug = false,
-  sources = {
-    formatting.prettier.with {
-      extra_filetypes = { "toml" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-    },
-    formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
-    formatting.google_java_format,
-    diagnostics.flake8,
+local function eslint_config_exists()
+  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
+
+  if not vim.tbl_isempty(eslintrc) then
+    return true
+  end
+
+  local current_dir = vim.fn.getcwd()
+  local config_file = current_dir .. "/package.json"
+  if vim.fn.filereadable(config_file) == 1 then
+    if vim.fn.json_decode(vim.fn.readfile(config_file))["eslintConfig"] then
+      return true
+    end
+  end
+
+  return false
+end
+
+local function rome_config_exists()
+  local current_dir = vim.fn.getcwd()
+  local config_file = current_dir .. "/rome.json"
+  if vim.fn.filereadable(config_file) == 1 then
+    return true
+  end
+
+  return false
+end
+
+local function deno_config_exists()
+  local current_dir = vim.fn.getcwd()
+  local config_file = current_dir .. "/deno.json"
+  if vim.fn.filereadable(config_file) == 1 then
+    return true
+  end
+
+  local jsonc_file = current_dir .. "/deno.jsonc"
+  if vim.fn.filereadable(jsonc_file) == 1 then
+    return true
+  end
+
+  return false
+end
+
+local sources = {
+
+  -- spell check
+  -- b.code_actions.cspell,
+  -- b.diagnostics.cspell,
+  b.diagnostics.codespell,
+  b.diagnostics.misspell,
+  b.diagnostics.write_good,
+  b.code_actions.proselint,
+
+  -- webdev stuff
+  b.formatting.rustywind,
+  b.code_actions.eslint_d.with {
+    condition = function()
+      return eslint_config_exists() and not rome_config_exists()
+    end,
   },
+  b.diagnostics.eslint_d.with {
+    condition = function()
+      return eslint_config_exists() and not rome_config_exists()
+    end,
+  },
+  b.formatting.eslint_d.with {
+    condition = function()
+      return eslint_config_exists() and not rome_config_exists()
+    end,
+  },
+  b.formatting.deno_fmt.with {
+    filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact" },
+    condition = function()
+      return deno_config_exists()
+    end,
+  },
+  b.formatting.rome.with {
+    condition = function()
+      return rome_config_exists() and not eslint_config_exists() and not deno_config_exists()
+    end,
+  },
+  b.formatting.prettierd.with {
+    filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact" },
+    condition = function()
+      return not rome_config_exists() and not deno_config_exists()
+    end,
+  },
+
+  -- Lua
+  b.formatting.stylua,
+
+  -- rust
+  b.formatting.rustfmt.with {
+    extra_args = { "--edition", "2018" },
+  },
+
+  -- go
+  b.diagnostics.revive,
+  b.formatting.gofmt,
+
+  -- proto buf
+  b.diagnostics.protolint,
+}
+
+null_ls.setup {
+  on_attach = function(client)
+    -- format on save
+    require("lsp-format").on_attach(client)
+  end,
+  sources = sources,
 }
