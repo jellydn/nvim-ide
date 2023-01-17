@@ -64,7 +64,18 @@ local kind_icons = {
   TypeParameter = "",
 }
 
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+
 cmp.setup {
+  -- enabled = function()
+  --   local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+  --   if buftype == "prompt" then
+  --     return false
+  --   end
+  --   return vim.g.cmp_active
+  -- end,
+  -- preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -123,6 +134,11 @@ cmp.setup {
         vim_item.kind_hl_group = "CmpItemKindTabnine"
       end
 
+      if entry.source.name == "copilot" then
+        vim_item.kind = string.format("%s %s", "", " Copilot")
+        vim_item.kind_hl_group = "CmpItemKindCopilot"
+      end
+
       vim_item.menu = ({
         nvim_lsp = "",
         nvim_lua = "",
@@ -135,6 +151,37 @@ cmp.setup {
     end,
   },
   sources = {
+    {
+      name = "copilot",
+      -- keyword_length = 0,
+      max_item_count = 3,
+      trigger_characters = {
+        {
+          ".",
+          ":",
+          "(",
+          "'",
+          '"',
+          "[",
+          ",",
+          "#",
+          "*",
+          "@",
+          "|",
+          "=",
+          "-",
+          "{",
+          "/",
+          "\\",
+          "+",
+          "?",
+          " ",
+          -- "\t",
+          -- "\n",
+        },
+      },
+      group_index = 2,
+    },
     {
       name = "nvim_lsp",
       filter = function(entry, ctx)
