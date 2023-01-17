@@ -50,6 +50,15 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Move live up or down
+-- moving
+keymap("n", "<A-Down>", ":m .+1<CR>", opts)
+keymap("n", "<A-Up>", ":m .-2<CR>", opts)
+keymap("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", opts)
+keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
+keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
+keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
+
 -- Plugins --
 
 -- NvimTree
