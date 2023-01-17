@@ -71,7 +71,13 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
   use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
-  use "zbirenbaum/copilot-cmp"
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  }
 
   -- snippets
   use { "L3MON4D3/LuaSnip", commit = "8f8d493e7836f2697df878ef9c128337cbf2bb84" } --snippet engine
@@ -101,11 +107,12 @@ return packer.startup(function(use)
   }
   use {
     "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
+    cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
-      vim.defer_fn(function()
+      vim.schedule(function()
         require "user.cmp_copilot"
-      end, 100)
+      end)
     end,
   }
 
@@ -137,7 +144,12 @@ return packer.startup(function(use)
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
   -- Rust
-  use { "simrat39/rust-tools.nvim" }
+  use {
+    "simrat39/rust-tools.nvim",
+    config = function()
+      require("rust-tools").setup {}
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
