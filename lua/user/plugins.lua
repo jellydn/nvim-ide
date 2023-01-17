@@ -70,6 +70,7 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
+  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- snippets
   use { "L3MON4D3/LuaSnip", commit = "8f8d493e7836f2697df878ef9c128337cbf2bb84" } --snippet engine
@@ -86,32 +87,27 @@ return packer.startup(function(use)
 
   -- copilot
   use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "VimEnter",
+    "github/copilot.vim",
     config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
+      require "user.copilot"
     end,
   }
+
+  -- better escape
   use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
+    "nvim-zh/better-escape.vim",
     config = function()
-      require("copilot_cmp").setup()
+      require "user.escape"
     end,
   }
 
   -- which key
-  -- Lua
   use {
     "folke/which-key.nvim",
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup {
-      }
+      require("which-key").setup {}
     end,
   }
 

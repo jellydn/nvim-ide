@@ -62,6 +62,26 @@ keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
+keymap("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
+keymap("n", "<leader>fw", function()
+  require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = "[/] Fuzzily search in current buffer]" })
+
+-- Diagnostic keymaps
+keymap("n", "[d", vim.diagnostic.goto_prev)
+keymap("n", "]d", vim.diagnostic.goto_next)
+keymap("n", "<leader>q", vim.diagnostic.setloclist)
+
+-- Copilot
+keymap("i", "<C-j>", "<Plug>(copilot-next)", opts)
+keymap("i", "<C-k>", "<Plug>(copilot-previous)", opts)
+keymap("i", "<C-l>", "<Plug>(copilot-suggest)", opts)
+keymap("i", "<C-a>", "<Plug>(copilot-accept)", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)

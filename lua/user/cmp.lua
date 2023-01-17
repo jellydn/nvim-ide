@@ -8,7 +8,28 @@ if not snip_status_ok then
   return
 end
 
+local tabnine_status_ok, _ = pcall(require, "user.tabnine")
+if not tabnine_status_ok then
+  return
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
+
+local buffer_fts = {
+  "markdown",
+  "toml",
+  "yaml",
+  "json",
+}
+
+local function contains(t, value)
+  for _, v in pairs(t) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -96,6 +117,12 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       vim_item.kind = kind_icons[vim_item.kind]
+
+      if entry.source.name == "cmp_tabnine" then
+        vim_item.kind = string.format("%s %s", "", " TabNine")
+        vim_item.kind_hl_group = "CmpItemKindTabnine"
+      end
+
       vim_item.menu = ({
         nvim_lsp = "",
         nvim_lua = "",
@@ -108,11 +135,33 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
+    {
+      name = "nvim_lsp",
+      filter = function(entry, ctx)
+        local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+        if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+          return true
+        end
+
+        if kind == "Text" then
+          return true
+        end
+      end,
+      group_index = 2,
+    },
+    { name = "nvim_lua", group_index = 2 },
+    { name = "luasnip", group_index = 2 },
+    {
+      name = "buffer",
+      group_index = 2,
+      filter = function(entry, ctx)
+        if not contains(buffer_fts, ctx.prev_context.filetype) then
+          return true
+        end
+      end,
+    },
+    { name = "cmp_tabnine", group_index = 2 },
+    { name = "path", group_index = 2 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
