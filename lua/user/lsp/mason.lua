@@ -14,6 +14,8 @@ local servers = {
   "gopls",
   -- deno
   "denols",
+  -- svelte
+  "sveltels",
 }
 
 local settings = {
