@@ -25,6 +25,7 @@ configs.setup {
     "toml",
     "c",
     "proto",
+    "svelte",
   },
   auto_install = true,
   -- ensure_installed = "all", -- one of "all" or a list of languages

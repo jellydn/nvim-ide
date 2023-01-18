@@ -87,7 +87,7 @@ local sources = {
     end,
   },
   b.formatting.prettierd.with {
-    filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact" },
+    filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact", "svelte" },
     condition = function()
       return not rome_config_exists() and not deno_config_exists()
     end,
