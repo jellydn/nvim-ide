@@ -140,8 +140,7 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 
 ## Plugins
 
-- [packer](https://github.com/wbthomason/packer.nvim)
-- [plenary](https://github.com/nvim-lua/plenary.nvim)
+- [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
@@ -159,11 +158,8 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-path](https://github.com/hrsh7th/cmp-path)
-- [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-- [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 - [tzachar/cmp-tabnine](https://github.com/tzachar/cmp-tabnine)
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
@@ -180,8 +176,6 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [DAPInstall.nvim](https://github.com/ravenxrz/DAPInstall.nvim)
 - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
-- [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua)
-- [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua)
 - [github/copilot.vim](https://github.com/github/copilot.vim)
 - [simrat39/rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [crispgm/nvim-go](https://github.com/crispgm/nvim-go)

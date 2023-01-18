@@ -3,13 +3,6 @@ if not cmp_status_ok then
   return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
-
-require("luasnip/loaders/from_vscode").lazy_load()
-
 local buffer_fts = {
   "markdown",
   "toml",
@@ -70,12 +63,6 @@ cmp.setup {
   --   return vim.g.cmp_active
   -- end,
   preselect = cmp.PreselectMode.None,
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body) -- For `luasnip` users.
-    end,
-  },
-
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -92,10 +79,6 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       elseif check_backspace() then
         fallback()
       else
@@ -108,8 +91,6 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
@@ -130,8 +111,6 @@ cmp.setup {
 
       vim_item.menu = ({
         nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
         buffer = "",
         path = "",
         emoji = "",
@@ -140,37 +119,6 @@ cmp.setup {
     end,
   },
   sources = {
-    {
-      name = "copilot",
-      -- keyword_length = 0,
-      max_item_count = 3,
-      trigger_characters = {
-        {
-          ".",
-          ":",
-          "(",
-          "'",
-          '"',
-          "[",
-          ",",
-          "#",
-          "*",
-          "@",
-          "|",
-          "=",
-          "-",
-          "{",
-          "/",
-          "\\",
-          "+",
-          "?",
-          " ",
-          -- "\t",
-          -- "\n",
-        },
-      },
-      group_index = 2,
-    },
     {
       name = "nvim_lsp",
       filter = function(entry, ctx)
@@ -185,8 +133,6 @@ cmp.setup {
       end,
       group_index = 2,
     },
-    { name = "nvim_lua", group_index = 2 },
-    { name = "luasnip", group_index = 2 },
     {
       name = "buffer",
       group_index = 2,
