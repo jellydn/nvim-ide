@@ -13,6 +13,7 @@ configs.setup {
     "vim",
     "lua",
     "html",
+    "markdown",
     "css",
     "typescript",
     "javascript",
