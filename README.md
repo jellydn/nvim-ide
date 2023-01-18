@@ -156,18 +156,20 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [alpha-nvim](https://github.com/goolord/alpha-nvim)
 - [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [darkplus.nvim](https://github.com/LunarVim/darkplus.nvim)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-path](https://github.com/hrsh7th/cmp-path)
 - [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
+- [tzachar/cmp-tabnine](https://github.com/tzachar/cmp-tabnine)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
+- [glepnir/lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
+- [lukas-reineke/lsp-format.nvim](https://github.com/lukas-reineke/lsp-format.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -176,9 +178,11 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [DAPInstall.nvim](https://github.com/ravenxrz/DAPInstall.nvim)
+- [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
+- [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
+- [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+- [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+- [github/copilot.vim](https://github.com/github/copilot.vim)
+- [simrat39/rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
+- [crispgm/nvim-go](https://github.com/crispgm/nvim-go)
 
----
-
-> The computing scientist's main challenge is not to get confused by the complexities of his own making.
-
-\- Edsger W. Dijkstra
