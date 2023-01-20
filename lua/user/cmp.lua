@@ -3,6 +3,11 @@ if not cmp_status_ok then
   return
 end
 
+local tabnine_status_ok, _ = pcall(require, "user.tabnine")
+if not tabnine_status_ok then
+  return
+end
+
 local buffer_fts = {
   "markdown",
   "toml",
@@ -52,7 +57,7 @@ local kind_icons = {
   TypeParameter = "",
 }
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 
 cmp.setup {
   -- enabled = function()
@@ -104,9 +109,9 @@ cmp.setup {
     format = function(entry, vim_item)
       vim_item.kind = kind_icons[vim_item.kind]
 
-      if entry.source.name == "copilot" then
-        vim_item.kind = string.format("%s %s", "", " Copilot")
-        vim_item.kind_hl_group = "CmpItemKindCopilot"
+      if entry.source.name == "cmp_tabnine" then
+        vim_item.kind = string.format("%s %s", "", " TabNine")
+        vim_item.kind_hl_group = "CmpItemKindTabnine"
       end
 
       vim_item.menu = ({
@@ -142,6 +147,7 @@ cmp.setup {
         end
       end,
     },
+    { name = "cmp_tabnine", group_index = 2 },
     { name = "path", group_index = 2 },
   },
   confirm_opts = {
