@@ -1,19 +1,12 @@
-# A My IDE config for Neovim
+# My Personal IDE config for Neovim
 
-## Install Neovim 0.8
+## Install Neovim
 
-You can install Neovim with your package manager e.g. brew, apt, pacman etc.. but remember that when you update your packages Neovim may be upgraded to a newer version.
-
-If you would like to make sure Neovim only updates when you want it to than I recommend installing from source:
-
-**NOTE** Verify the required [build prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites) for your system.
+The easy way is using [MordechaiHadad/bob: A version manager for neovim](https://github.com/MordechaiHadad/bob).
 
 ```sh
-git clone https://github.com/neovim/neovim.git
-cd neovim
-git checkout release-0.8
-make CMAKE_BUILD_TYPE=Release
-sudo make install
+bob install stable
+bob use stable
 ```
 
 ## Install the config
@@ -26,11 +19,7 @@ git clone https://github.com/jellydn/nvim-ide.git ~/.config/nvim
 
 Run `nvim` and wait for the plugins to be installed
 
-**NOTE** First time you will get an error just ignore them and press enter, it will say nvim-ts-context-commentstring is not installed but that is fine just close and reopen nvim and everything should be fine  
-
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim)
-
-**NOTE** Checkout this file for some predefined keymaps: [keymaps](https://github.com/LunarVim/nvim-basic-ide/blob/master/lua/user/keymaps.lua)
+**NOTE** Checkout this file for some predefined keymaps: [keymaps](https://github.com/jellydn/nvim-ide/blob/master/lua/user/keymaps.lua)
 
 ## Get healthy
 
@@ -128,13 +117,13 @@ local servers = {
 
 ### Formatters and linters
 
-Make sure the formatter or linter is installed and add it to this setup function: [null-ls](https://github.com/LunarVim/nvim-basic-ide/blob/0e65f504f634026f5765ce6a092612d385d6306d/lua/user/lsp/null-ls.lua#L12)
+Make sure the formatter or linter is installed and add it to this setup function: [null-ls](https://github.com/jellydn/nvim-ide/blob/master/lua/user/lsp/null-ls.lua)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
 ### Plugins
 
-You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-basic-ide/blob/0e65f504f634026f5765ce6a092612d385d6306d/lua/user/plugins.lua#L45)
+You can install new plugins here: [plugins](https://github.com/jellydn/nvim-ide/blob/master/lua/user/plugins.lua)
 
 ---
 
@@ -179,4 +168,3 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [github/copilot.vim](https://github.com/github/copilot.vim)
 - [simrat39/rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [crispgm/nvim-go](https://github.com/crispgm/nvim-go)
-
