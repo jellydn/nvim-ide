@@ -61,16 +61,19 @@ local sources = {
   -- webdev stuff
   b.formatting.rustywind,
   b.code_actions.eslint_d.with {
+    filetypes = { "javascript", "javascriptreact", "vue", "typescript", "typescriptreact", "svelte" },
     condition = function()
       return eslint_config_exists() and not rome_config_exists()
     end,
   },
   b.diagnostics.eslint_d.with {
+    filetypes = { "javascript", "javascriptreact", "vue", "typescript", "typescriptreact", "svelte" },
     condition = function()
       return eslint_config_exists() and not rome_config_exists()
     end,
   },
   b.formatting.eslint_d.with {
+    filetypes = { "javascript", "javascriptreact", "vue", "typescript", "typescriptreact", "svelte" },
     condition = function()
       return eslint_config_exists() and not rome_config_exists()
     end,
