@@ -15,7 +15,7 @@ local servers = {
   -- deno
   "denols",
   -- svelte
-  "sveltels",
+  "svelte",
 }
 
 local settings = {
