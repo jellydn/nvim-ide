@@ -23,7 +23,7 @@ return require("lazy").setup {
   { "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" },
   { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" },
   { "nvim-lualine/lualine.nvim", commit = "a52f078026b27694d2290e34efa61a6e4a690621" },
-  { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" },
+  { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda", event = "VeryLazy" },
   { "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" },
   { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" },
   { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" },
@@ -144,7 +144,7 @@ return require("lazy").setup {
   -- Outline
   {
     "stevearc/aerial.nvim",
-    dependencies = { "telescope.nvim" },
+    event = "VeryLazy",
     config = function()
       require "user.aerial"
     end,
