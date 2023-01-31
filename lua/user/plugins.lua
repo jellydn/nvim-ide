@@ -33,11 +33,21 @@ return require("lazy").setup {
   { "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" },
 
   -- cmp plugins
-  { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" }, -- The completion plugin
-  { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }, -- buffer completions
-  { "hrsh7th/cmp-path", commit = "447c87cdd6e6d6a1d2488b1d43108bfa217f56e1" }, -- path completions
-  { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" },
-  { "tzachar/cmp-tabnine", dependencies = { "hrsh7th/nvim-cmp" }, build = "./install.sh" },
+  {
+    "hrsh7th/nvim-cmp",
+    commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc",
+    -- these dependencies will only be loaded when cmp loads
+    -- dependencies are always lazy-loaded unless specified otherwise
+    dependencies = {
+      { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }, -- buffer completions
+      { "hrsh7th/cmp-path", commit = "447c87cdd6e6d6a1d2488b1d43108bfa217f56e1" }, -- path completions
+      { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" },
+      { "tzachar/cmp-tabnine", build = "./install.sh" },
+    },
+    config = function()
+      require "user.cmp"
+    end,
+  }, -- The completion plugin
 
   -- snippets
   { "rafamadriz/friendly-snippets", commit = "2be79d8a9b03d4175ba6b3d14b082680de1b31b1" }, -- a bunch of snippets to use
@@ -88,13 +98,21 @@ return require("lazy").setup {
   { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" },
 
   -- DAP
-  { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" },
+  {
+    "mfussenegger/nvim-dap",
+    commit = "6b12294a57001d994022df8acbe2ef7327d30587",
+    config = function()
+      require "user.dap"
+    end,
+  },
   { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" },
   { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" },
 
   -- Rust
   {
     "simrat39/rust-tools.nvim",
+    -- lazy-load on filetype
+    ft = "rust",
     config = function()
       require("rust-tools").setup {}
     end,
