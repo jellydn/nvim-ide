@@ -3,9 +3,6 @@ if not lspconfig_status_ok then
   return
 end
 
--- import rust_tools
-local rust_tools = require "rust-tools"
-
 return {
   on_attach = function(_, bufnr)
     -- Hover actions

@@ -122,6 +122,7 @@ return require("lazy").setup {
   {
     "crispgm/nvim-go",
     dependencies = { "nvim-lua/plenary.nvim" },
+    ft = "go",
     config = function()
       require("go").config.update_tool("quicktype", function(tool)
         tool.pkg_mgr = "yarn"
