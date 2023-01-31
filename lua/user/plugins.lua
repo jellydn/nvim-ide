@@ -101,12 +101,15 @@ return require("lazy").setup {
   {
     "mfussenegger/nvim-dap",
     commit = "6b12294a57001d994022df8acbe2ef7327d30587",
+    lazy = true,
+    dependencies = {
+      { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" },
+      { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" },
+    },
     config = function()
       require "user.dap"
     end,
   },
-  { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" },
-  { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" },
 
   -- Rust
   {
@@ -121,7 +124,6 @@ return require("lazy").setup {
   -- Go
   {
     "crispgm/nvim-go",
-    dependencies = { "nvim-lua/plenary.nvim" },
     ft = "go",
     config = function()
       require("go").config.update_tool("quicktype", function(tool)
