@@ -149,4 +149,13 @@ return require("lazy").setup {
       require "user.aerial"
     end,
   },
+
+  -- Todo highlight
+  {
+    "folke/todo-comments.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("todo-comments").setup {}
+    end,
+  },
 }
