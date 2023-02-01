@@ -150,6 +150,7 @@ You can install new plugins here: [plugins](https://github.com/jellydn/nvim-ide/
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
 - [tzachar/cmp-tabnine](https://github.com/tzachar/cmp-tabnine)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)

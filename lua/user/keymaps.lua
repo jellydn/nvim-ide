@@ -70,6 +70,8 @@ keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope git_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+-- live greps with all files in the current directory
+keymap("n", "<leader>fl", ":Telescope live_grep cwd=" .. vim.fn.getcwd() .. "<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
@@ -175,17 +177,3 @@ keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opt
 
 -- Outline
 keymap("n", "<leader>a", "<cmd>AerialToggle!<CR>", opts)
-
--- Trouble
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-keymap("n", "<leader>xw", "<cmd>TroubleToggle <workspace_diagnosticscr>", opts)
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
-keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
-
--- Show todo
-keymap("n", "<leader>tt", "<cmd>TodoTelescope<cr>", opts)
-keymap("n", "<leader>tw", "<cmd>TodoTrouble<cr>", opts)
-keymap("n", "<leader>tl", "<cmd>TodoLocList<cr>", opts)
-keymap("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", opts)

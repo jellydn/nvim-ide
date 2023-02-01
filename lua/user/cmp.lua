@@ -60,14 +60,12 @@ local kind_icons = {
 vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 
 cmp.setup {
-  -- enabled = function()
-  --   local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-  --   if buftype == "prompt" then
-  --     return false
-  --   end
-  --   return vim.g.cmp_active
-  -- end,
   preselect = cmp.PreselectMode.None,
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -138,6 +136,7 @@ cmp.setup {
       end,
       group_index = 2,
     },
+    { name = "luasnip", group_index = 2 },
     {
       name = "buffer",
       group_index = 2,
