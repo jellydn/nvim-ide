@@ -168,3 +168,5 @@ You can install new plugins here: [plugins](https://github.com/jellydn/nvim-ide/
 - [github/copilot.vim](https://github.com/github/copilot.vim)
 - [simrat39/rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim)
 - [crispgm/nvim-go](https://github.com/crispgm/nvim-go)
+- [folke/trouble.nvim](https://github.com/folke/trouble.nvim)
+- [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
