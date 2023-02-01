@@ -158,4 +158,13 @@ return require("lazy").setup {
       require("todo-comments").setup {}
     end,
   },
+
+  -- Trouble
+  {
+    "folke/trouble.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("trouble").setup {}
+    end,
+  },
 }

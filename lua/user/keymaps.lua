@@ -173,3 +173,17 @@ keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opt
 
 -- Outline
 keymap("n", "<leader>a", "<cmd>AerialToggle!<CR>", opts)
+
+-- Trouble
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle <workspace_diagnosticscr>", opts)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
+
+-- Show todo
+keymap("n", "<leader>tt", "<cmd>TodoTelescope<cr>", opts)
+keymap("n", "<leader>tw", "<cmd>TodoTrouble<cr>", opts)
+keymap("n", "<leader>tl", "<cmd>TodoLocList<cr>", opts)
+keymap("n", "<leader>tq", "<cmd>TodoQuickFix<cr>", opts)
