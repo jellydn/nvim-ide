@@ -68,11 +68,11 @@ keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 -- Telescope
 -- See `:help telescope.builtin`
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope git_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope diagnostics<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
@@ -151,6 +151,9 @@ keymap("i", "<C-a>", "<Plug>(copilot-accept)", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+-- gitsigns
+keymap("n", "<leader>gb", "<cmd>lua require('gitsigns').blame_line()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
