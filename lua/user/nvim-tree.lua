@@ -11,12 +11,16 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
-   -- hide the .git folder via a custom filter, see :help nvim-tree.filters.custom
+  -- hide the .git folder via a custom filter, see :help nvim-tree.filters.custom
   filters = { custom = { "^.git$" } },
   git = {
     enable = true,
   },
-
+  disable_netrw = true,
+  hijack_netrw = true,
+  hijack_cursor = true,
+  hijack_unnamed_buffer_when_opening = false,
+  update_cwd = true,
   update_focused_file = {
     enable = true,
     update_cwd = true,
@@ -68,6 +72,14 @@ nvim_tree.setup {
         { key = "h", cb = tree_cb "close_node" },
         { key = "v", cb = tree_cb "vsplit" },
       },
+    },
+  },
+  actions = {
+    use_system_clipboard = true,
+    change_dir = {
+      enable = true,
+      global = false,
+      restrict_above_cwd = false,
     },
   },
 }

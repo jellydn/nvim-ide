@@ -50,3 +50,7 @@ vim.opt.relativenumber = true -- enable relative number
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
 vim.opt.spellsuggest = "best,5"
+
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
