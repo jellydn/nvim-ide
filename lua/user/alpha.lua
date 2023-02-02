@@ -21,7 +21,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
   dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-  dashboard.button("l", "zZ" .. " Lazy Vim", ":Lazy <CR>"),
+  dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }
 local function footer()
