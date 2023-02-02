@@ -85,6 +85,10 @@ keymap("n", "<leader>fw", function()
     previewer = false,
   })
 end, { desc = "[/] Fuzzily search in current buffer]" })
+
+-- bring back the last telescope search
+keymap("n", "<leader>;", "<cmd>Telescope resume<CR>", opts)
+
 keymap("n", "<leader>fi", "<cmd>Telescope aerial<CR>", opts)
 keymap("n", "<leader>tk", "<cmd>Telescope keymaps<CR>", opts)
 keymap("n", "<leader>gt", "<cmd>Telescope git_status<CR>", opts)
@@ -124,14 +128,6 @@ keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
 -- Diagnostic jump can use `<c-o>` to jump back
 keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-
--- Diagnostic jump with filter like Only jump to error
-keymap("n", "[E", function()
-  require("lspsaga.diagnostic").goto_prev { severity = vim.diagnostic.severity.ERROR }
-end)
-keymap("n", "]E", function()
-  require("lspsaga.diagnostic").goto_next { severity = vim.diagnostic.severity.ERROR }
-end)
 
 -- Toggle Outline
 keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
