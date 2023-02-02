@@ -98,7 +98,6 @@ return require("lazy").setup {
   },
   {
     "goolord/alpha-nvim",
-    commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31",
     event = "VimEnter",
     config = function()
       require "user.alpha"
@@ -106,20 +105,22 @@ return require("lazy").setup {
   },
 
   -- Colorschemes
-  { "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
 
   -- cmp plugins
   {
     "hrsh7th/nvim-cmp",
-    commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc",
-    event = "InsertEnter",
+    event = "VeryLazy",
     -- these dependencies will only be loaded when cmp loads
     -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
-      { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }, -- buffer completions
-      { "hrsh7th/cmp-path", commit = "447c87cdd6e6d6a1d2488b1d43108bfa217f56e1" }, -- path completions
-      { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" },
-      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-buffer" }, -- buffer completions
+      { "hrsh7th/cmp-path" }, -- path completions
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "saadparwaiz1/cmp_luasnip", ft = "lua" },
       { "tzachar/cmp-tabnine", build = "./install.sh" },
     },
     config = function()
@@ -130,6 +131,7 @@ return require("lazy").setup {
   -- snippets
   {
     "L3MON4D3/LuaSnip",
+    event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -140,24 +142,12 @@ return require("lazy").setup {
       history = true,
       delete_check_events = "TextChanged",
     },
-    -- stylua: ignore
-    keys = {
-      {
-        "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true, silent = true, mode = "i",
-      },
-      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-    },
   },
 
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda",
+    event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", commit = "bfc5997e52fe9e20642704da050c415ea1d4775f" },
       { "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" },
@@ -165,7 +155,6 @@ return require("lazy").setup {
       { "lukas-reineke/lsp-format.nvim" },
       {
         "glepnir/lspsaga.nvim",
-        branch = "main",
         config = function()
           require("lspsaga").setup {}
         end,
@@ -178,7 +167,6 @@ return require("lazy").setup {
 
   {
     "RRethy/vim-illuminate",
-    commit = "a2e8476af3f3e993bb0d6477438aad3096512e42",
     event = "BufReadPost",
     config = function()
       require "user.illuminate"
@@ -198,8 +186,6 @@ return require("lazy").setup {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
       require("which-key").setup {}
     end,
   },
@@ -207,7 +193,6 @@ return require("lazy").setup {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    commit = "76ea9a898d3307244dce3573392dcf2cc38f340f",
     config = function()
       require "user.telescope"
     end,
@@ -216,7 +201,13 @@ return require("lazy").setup {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = "BufReadPost",
+    keys = {
+      { "<c-space>", desc = "Increment selection" },
+      { "<bs>", desc = "Schrink selection", mode = "x" },
+    },
     config = function()
       require "user.treesitter"
     end,
@@ -225,7 +216,6 @@ return require("lazy").setup {
   -- Git
   {
     "lewis6991/gitsigns.nvim",
-    commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f",
     event = "BufReadPre",
     config = function()
       require "user.gitsigns"
@@ -235,11 +225,10 @@ return require("lazy").setup {
   -- DAP
   {
     "mfussenegger/nvim-dap",
-    commit = "6b12294a57001d994022df8acbe2ef7327d30587",
     lazy = true,
     dependencies = {
-      { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" },
-      { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" },
+      { "rcarriga/nvim-dap-ui" },
+      { "ravenxrz/DAPInstall.nvim" },
     },
     config = function()
       require "user.dap"
@@ -252,7 +241,8 @@ return require("lazy").setup {
     -- lazy-load on filetype
     ft = "rust",
     config = function()
-      require("rust-tools").setup {
+      local rt = require "rust-tools"
+      rt.setup {
         server = {
           on_attach = function(_, bufnr)
             -- Hover actions
@@ -279,6 +269,7 @@ return require("lazy").setup {
   -- Surround
   {
     "kylechui/nvim-surround",
+    event = "BufReadPost",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup {}
