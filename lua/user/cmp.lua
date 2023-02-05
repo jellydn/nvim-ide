@@ -136,6 +136,7 @@ cmp.setup {
       end,
       group_index = 2,
     },
+    { name = "cmp_tabnine", group_index = 2 },
     { name = "luasnip", group_index = 2 },
     {
       name = "buffer",
@@ -146,7 +147,6 @@ cmp.setup {
         end
       end,
     },
-    { name = "cmp_tabnine", group_index = 1 },
     { name = "path", group_index = 2 },
   },
   confirm_opts = {
