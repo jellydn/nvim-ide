@@ -14,6 +14,7 @@ configs.setup {
     "lua",
     "html",
     "markdown",
+    "markdown_inline",
     "css",
     "typescript",
     "javascript",

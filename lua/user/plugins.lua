@@ -127,7 +127,7 @@ return require("lazy").setup {
 
   {
     "L3MON4D3/LuaSnip",
-    event = "InsertEnter",
+    event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -173,6 +173,7 @@ return require("lazy").setup {
   -- copilot
   {
     "github/copilot.vim",
+    event = "VeryLazy",
     config = function()
       require "user.copilot"
     end,
@@ -190,6 +191,7 @@ return require("lazy").setup {
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     config = function()
       require "user.telescope"
     end,
