@@ -9,14 +9,18 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   }
 end
+
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
+
 -- Install your plugins here
-return require("lazy").setup {
+require("lazy").setup {
   -- My plugins here
   -- library used by other plugins
-  { "nvim-lua/plenary.nvim", lazy = true },
-
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
   {
     "windwp/nvim-autopairs",
     event = "VeryLazy",
@@ -311,3 +315,22 @@ return require("lazy").setup {
     },
   },
 }
+
+require "config.options"
+
+-- load the autocommands and keymaps only if the user didn't specify any files
+if vim.fn.argc(-1) == 0 then
+  -- autocmds and keymaps can wait to load
+  vim.api.nvim_create_autocmd("User", {
+    group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
+    pattern = "VeryLazy",
+    callback = function()
+      require "config.autocommands"
+      require "config.keymaps"
+    end,
+  })
+else
+  -- load them now so they affect the opened buffers
+  require "config.autocommands"
+  require "config.keymaps"
+end
