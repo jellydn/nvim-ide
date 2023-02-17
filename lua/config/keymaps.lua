@@ -158,6 +158,9 @@ keymap("i", "<C-a>", "<Plug>(copilot-accept)", opts)
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
+-- Lazy
+keymap("n", "<leader>l", "<cmd>Lazy<CR>", opts)
+
 -- gitsigns
 keymap("n", "<leader>gb", "<cmd>lua require('gitsigns').blame_line()<CR>", opts)
 
