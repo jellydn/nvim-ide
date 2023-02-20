@@ -44,6 +44,9 @@ keymap("v", "p", '"_dP', opts)
 -- Copy whole file content to clipboard with C-c
 keymap("n", "<C-c>", ":%y+<CR>", opts)
 
+-- Save file with C-s
+keymap("n", "<C-s>", ":w<CR>", opts)
+
 -- Insert --
 -- Press jj,jk fast to enter
 keymap("i", "jj", "<ESC>", opts)
@@ -166,7 +169,7 @@ keymap("n", "<leader>gb", "<cmd>lua require('gitsigns').blame_line()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
+keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

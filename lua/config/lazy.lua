@@ -54,7 +54,7 @@ require("lazy").setup {
       require "user.bufferline"
     end,
   },
-  { "moll/vim-bbye" },
+  { "moll/vim-bbye", event = "VeryLazy" },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -115,7 +115,7 @@ require("lazy").setup {
       { "hrsh7th/cmp-buffer" }, -- buffer completions
       { "hrsh7th/cmp-path" }, -- path completions
       { "hrsh7th/cmp-nvim-lsp" },
-      { "saadparwaiz1/cmp_luasnip", ft = "lua" },
+      { "saadparwaiz1/cmp_luasnip" },
       { "tzachar/cmp-tabnine", build = "./install.sh" },
     },
     config = function()
@@ -131,7 +131,7 @@ require("lazy").setup {
 
   {
     "L3MON4D3/LuaSnip",
-    event = "VeryLazy",
+    lazy = true,
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -315,22 +315,3 @@ require("lazy").setup {
     },
   },
 }
-
-require "config.options"
-
--- load the autocommands and keymaps only if the user didn't specify any files
-if vim.fn.argc(-1) == 0 then
-  -- autocmds and keymaps can wait to load
-  vim.api.nvim_create_autocmd("User", {
-    group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
-    pattern = "VeryLazy",
-    callback = function()
-      require "config.autocommands"
-      require "config.keymaps"
-    end,
-  })
-else
-  -- load them now so they affect the opened buffers
-  require "config.autocommands"
-  require "config.keymaps"
-end

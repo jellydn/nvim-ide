@@ -3,6 +3,11 @@ if not cmp_status_ok then
   return
 end
 
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+end
+
 local tabnine_status_ok, _ = pcall(require, "user.tabnine")
 if not tabnine_status_ok then
   return
@@ -63,7 +68,7 @@ cmp.setup {
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert {
@@ -82,6 +87,10 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif check_backspace() then
         fallback()
       else
@@ -94,6 +103,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -114,6 +125,8 @@ cmp.setup {
 
       vim_item.menu = ({
         nvim_lsp = "",
+        nvim_lua = "",
+        luasnip = "",
         buffer = "",
         path = "",
         emoji = "",
@@ -122,32 +135,12 @@ cmp.setup {
     end,
   },
   sources = {
-    {
-      name = "nvim_lsp",
-      filter = function(entry, ctx)
-        local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-        if kind == "Snippet" and ctx.prev_context.filetype == "java" then
-          return true
-        end
-
-        if kind == "Text" then
-          return true
-        end
-      end,
-      group_index = 2,
-    },
-    { name = "cmp_tabnine", group_index = 2 },
-    { name = "luasnip", group_index = 2 },
-    {
-      name = "buffer",
-      group_index = 2,
-      filter = function(entry, ctx)
-        if not contains(buffer_fts, ctx.prev_context.filetype) then
-          return true
-        end
-      end,
-    },
-    { name = "path", group_index = 2 },
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
+    { name = "cmp_tabnine" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
