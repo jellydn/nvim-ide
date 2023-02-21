@@ -123,7 +123,7 @@ Make sure the formatter or linter is installed and add it to this setup function
 
 ### Plugins
 
-You can install new plugins here: [plugins](https://github.com/jellydn/nvim-ide/blob/master/lua/user/plugins.lua)
+You can install new plugins here: [lazy](https://github.com/jellydn/nvim-ide/blob/master/lua/config/lazy.lua)
 
 ---
 
