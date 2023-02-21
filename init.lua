@@ -1,6 +1,5 @@
-require "config.lazy"
-
 require "config.options"
+require "config.lazy"
 
 -- load the autocommands and keymaps only if the user didn't specify any files
 if vim.fn.argc(-1) == 0 then
